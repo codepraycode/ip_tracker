@@ -152,6 +152,22 @@ header .search_input span {
     transform: translateY(0%);
     text-align: center;
   }
+  .info_display .info {
+    padding: 0px 30px;
+    width: 200px;
+    margin-bottom: 20px;
+  }
+  .info_display .info:last-of-type {
+    margin-bottom: 0;
+  }
+  .info_display .info h1 {
+    margin: 0;
+    font-size: 18px;
+  }
+  .info_display .info h5 {
+    margin: 0;
+    font-size: 12px;
+  }
   .info_display .info::after {
     display: none;
   }

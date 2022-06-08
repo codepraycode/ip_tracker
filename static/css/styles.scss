@@ -143,6 +143,20 @@ header {
         transform: translateY(0%);
         text-align: center;
         .info {
+            padding: 0px 30px;
+            width: 200px;
+            margin-bottom: 20px;
+            &:last-of-type {
+                margin-bottom: 0;
+            }
+            h1 {
+                margin: 0;
+                font-size: 18px;
+            }
+            h5 {
+                margin: 0;
+                font-size: 12px;
+            }
             &::after {
                 display: none;
             }
