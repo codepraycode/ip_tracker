@@ -92,6 +92,7 @@ header .search_input span {
   background: #fff;
   border-radius: 10px;
   padding: 20px 0px;
+  z-index: 999 !important;
 }
 .info_display .info {
   padding: 0px 30px;
