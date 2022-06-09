@@ -69,21 +69,8 @@ function renderMap(map, { info, coordinates }) {
     map.on('click', handleMapClick);
 }
 
-window.onload = () => {
-    // Display elements
-    let ip_display = document.getElementById("ip_display");
-    let location_display = document.getElementById("location_display");
-    let tz_display = document.getElementById("tz_display");
 
-    let isp_display = document.getElementById("isp_display");
-
-    let map = L.map('map');
-
-    //.setView([51.505, -0.09], 13);
-
-    initializeMap(map);
-
-    let ip = "192.212.174.101"; //"8.8.8.8";
+function locateOnMap(map, ip) {
     let api_key = "at_v198k7JVpjjziJwi48vxS9sma0S6r";
     let api_url = `https://geo.ipify.org/api/v2/country,city?apiKey=${api_key}&ipAddress=${ip}`;
 
@@ -110,5 +97,36 @@ window.onload = () => {
         .catch(err => {
             console.error(err);
         })
+}
+
+window.onload = () => {
+    // entry element
+    let ipaddress = document.getElementById("ipaddress");
+    let btn = document.getElementById('btn');
+
+
+    // Display elements
+    let ip_display = document.getElementById("ip_display");
+    let location_display = document.getElementById("location_display");
+    let tz_display = document.getElementById("tz_display");
+
+    let isp_display = document.getElementById("isp_display");
+
+    let map = L.map('map');
+
+    //.setView([51.505, -0.09], 13);
+
+    initializeMap(map);
+
+    // let ip = "192.212.174.101"; //"8.8.8.8";
+    btn.addEventListener('click', () => {
+
+            let ipaddress = document.getElementById("ipaddress").value;
+            // console.log(ipaddress, ipaddress.value);
+
+            locateOnMap(map, ipaddress);
+
+        })
+        // locateOnMap(map, ip)
 
 }

@@ -23,8 +23,10 @@
         <h2>IP Address Tracker</h2>
 
         <div class="search_input">
-            <input type="text" placeholder="Search for any IP address or domain">
-            <span></span>
+
+            <input type="text" minlength="7" maxlength="15" size="15" pattern="^((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.){3}(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])$" placeholder="Search for any IP address or domain" id="ipaddress">
+            <span id="btn"></span>
+
         </div>
     </header>
 
