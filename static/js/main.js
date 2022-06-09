@@ -8,6 +8,20 @@ function initializeMap(map) {
     ).addTo(map);
 
     // renderMap(map);
+
+    fetch("https://ipapi.co/json/")
+        .then((res) => {
+            return res.json()
+        })
+        .then(data => {
+            // console.log(data);
+            let { ip: ipaddress } = data;
+            locateOnMap(map, ipaddress);
+
+        })
+        .catch(err => {
+            console.error(err);
+        })
 }
 
 function renderMap(map, { info, coordinates }) {
