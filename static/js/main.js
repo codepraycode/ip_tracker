@@ -1,9 +1,5 @@
-window.onload = () => {
-
-    let map = L.map('map').setView([51.505, -0.09], 13);
-
+function initializeMap(map) {
     let tileUrl = "https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=59d406a901be457998ca0ee971be90fe";
-
     L.tileLayer(
         tileUrl, {
             maxZoom: 10,
@@ -11,13 +7,24 @@ window.onload = () => {
         }
     ).addTo(map);
 
+    // renderMap(map);
+}
+
+function renderMap(map, { info, coordinates }) {
+    // let map = L.map('map').setView([51.505, -0.09], 13);
+    cord = coordinates || [51.505, -0.09];
+
+    info = info || `<b>Location</b>: Latitude ${cord[0]}, Longtitude ${cord[1]}`;
+
+    map.setView(cord, 6);
+
     // setting custom icon
     let myicon = L.icon({
         iconUrl: '/static/images/icon-location.svg',
     })
 
     // Adding marker
-    let marker = L.marker([51.5, -0.09], { icon: myicon }).addTo(map);
+    let marker = L.marker(cord, { icon: myicon }).addTo(map);
 
     // // Adding circle
     // let circle = L.circle([51.508, -0.11], {
@@ -36,7 +43,7 @@ window.onload = () => {
 
 
     // adding popup
-    marker.bindPopup("<b>Hello world!</b><br>I am a popup.") //.openPopup();
+    marker.bindPopup(info) //.openPopup();
         // circle.bindPopup("I am a circle.");
         // polygon.bindPopup("I am a polygon.")
 
@@ -60,4 +67,48 @@ window.onload = () => {
     }
 
     map.on('click', handleMapClick);
+}
+
+window.onload = () => {
+    // Display elements
+    let ip_display = document.getElementById("ip_display");
+    let location_display = document.getElementById("location_display");
+    let tz_display = document.getElementById("tz_display");
+
+    let isp_display = document.getElementById("isp_display");
+
+    let map = L.map('map');
+
+    //.setView([51.505, -0.09], 13);
+
+    initializeMap(map);
+
+    let ip = "192.212.174.101"; //"8.8.8.8";
+    let api_key = "at_v198k7JVpjjziJwi48vxS9sma0S6r";
+    let api_url = `https://geo.ipify.org/api/v2/country,city?apiKey=${api_key}&ipAddress=${ip}`;
+
+    fetch(api_url)
+        .then((res) => {
+            return res.json()
+        })
+        .then(data => {
+            // console.log(data);
+            let { location, ip, isp, } = data;
+
+            let { city, country, region, lat, lng, timezone, postalCode } = location;
+
+            // console.log(lat, lng);
+
+            ip_display.innerText = ip;
+            isp_display.innerText = isp;
+            location_display.innerText = `${city}, ${country} ${postalCode}`;
+            tz_display.innerText = `UTC ${timezone}`;
+
+
+            renderMap(map, { coordinates: [lat, lng], info: `<b>${city}, ${region}</b> (Latitude: ${lat}, Longitude: ${lng})` });
+        })
+        .catch(err => {
+            console.error(err);
+        })
+
 }

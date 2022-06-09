@@ -91,12 +91,12 @@ header .search_input span {
   max-width: 80%;
   background: #fff;
   border-radius: 10px;
-  padding: 20px 0px;
+  padding: 30px 0px;
   z-index: 999 !important;
 }
 .info_display .info {
   padding: 0px 30px;
-  width: 150px;
+  width: 200px;
   overflow-wrap: break-word;
   position: relative;
   display: flex;
@@ -112,7 +112,8 @@ header .search_input span {
 }
 .info_display .info h1 {
   color: hsl(0deg, 0%, 17%);
-  margin-bottom: 20px;
+  font-size: 20px;
+  margin: 10px 0;
 }
 .info_display .info h5 {
   color: hsl(0deg, 0%, 59%);
