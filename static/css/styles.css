@@ -75,9 +75,19 @@ header .search_input span {
   background-color: hsl(0deg, 0%, 17%);
 }
 
+.error {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: red;
+  padding: 5px 15px;
+  font-size: 15px;
+  font-weight: 700;
+  margin: 5px auto;
+}
+
 .info_display {
   display: flex;
-  position: relative;
   position: absolute;
   left: 0;
   right: 0;

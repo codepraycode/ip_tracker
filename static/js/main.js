@@ -20,9 +20,18 @@ function initializeMap(map) {
 
         })
         .catch(err => {
-            console.error(err);
+            // console.error(err);
+            // showError(err);
+            showError("Netwrok Error!");
         })
 }
+
+function showError(msg) {
+    // console.log(msg.toString());
+    // msg = msg.toString();
+    document.getElementById("error").innerText = msg //.split(":").slice(1, ).join(" ");
+}
+
 
 function renderMap(map, { info, coordinates }) {
     // let map = L.map('map').setView([51.505, -0.09], 13);
@@ -94,7 +103,14 @@ function locateOnMap(map, ip) {
         })
         .then(data => {
             // console.log(data);
+
             let { location, ip, isp, } = data;
+
+            if (!location) {
+                showError(data.messages);
+                return
+            }
+
 
             let { city, country, region, lat, lng, timezone, postalCode } = location;
 
@@ -109,7 +125,9 @@ function locateOnMap(map, ip) {
             renderMap(map, { coordinates: [lat, lng], info: `<b>${city}, ${region}</b> (Latitude: ${lat}, Longitude: ${lng})` });
         })
         .catch(err => {
-            console.error(err);
+            // console.error(err);
+            // document.getElementById("error").innerText = err;
+            showError(err);
         })
 }
 
@@ -117,6 +135,11 @@ window.onload = () => {
     // entry element
     let ipaddress = document.getElementById("ipaddress");
     let btn = document.getElementById('btn');
+
+
+    ipaddress.addEventListener('change', () => {
+        showError("");
+    })
 
 
     // Display elements

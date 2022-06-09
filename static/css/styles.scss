@@ -65,9 +65,17 @@ header {
     }
 }
 
+.error {
+    width: max-content;
+    color: red;
+    padding: 5px 15px;
+    font-size: 15px;
+    font-weight: $bold;
+    margin: 5px auto;
+}
+
 .info_display {
     display: flex;
-    position: relative;
     position: absolute;
     left: 0;
     right: 0;
